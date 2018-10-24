@@ -1,6 +1,8 @@
 
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
+
+from django.shortcuts import render
 from django.contrib import messages
 from django.contrib.auth.models import User
 import datetime
@@ -17,15 +19,14 @@ from el_pagination.views import AjaxListView
 
 
 def HomePage(request, extra_context = None):
-    template_name = "pages/index.html"
-    page_template = "pages/index_page.html"
 
-    entries = Client.objects.all()
-    entries = [i for i in range(10000)]
-    context = {"entries": entries, "page_template": page_template}
+    template_name = "pages/index.html"
+    # page_template = "pages/index_page.html"
+    # entries = Client.objects.all()
+    entries = [i for i in range(10)]
+    context = {"entries": entries}
     if extra_context is not None:
         context.update(extra_context)
-
 
     return render(request, template_name, context)
 

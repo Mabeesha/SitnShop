@@ -14,11 +14,12 @@
 	<body>
 
 		<div class="navbar">
-  			<a href="index.html" style="float: left;font-family: 'Aclonica';"><i class="fa fa-fw fa-home"></i><h3> SitnShop</h3></a> 
+  			<a href="/home/" style="float: left;font-family: 'Aclonica';"><i class="fa fa-fw fa-home"></i><h3> SitnShop</h3></a>
   			<a href="#"><i class="fa fa-fw fa-envelope"></i><h3> Contact</h3></a> 
-  			<a href="login_page.html"><i class="fa fa-fw fa-user"></i><h3> Login</h3></a>
+  			<a href="/home/login"><i class="fa fa-fw fa-user"></i><h3> Login</h3></a>
   			<div class="search-container">
-    			<form action="/action_page.php">
+    			<form method="post">
+					{% csrf_token %}
     				<button type="submit"><i class="fa fa-search"></i></button>
       				<input type="text" placeholder="Search" name="search">
       				
@@ -33,10 +34,27 @@
 
 
   		{% for entry in entries %}
-  		<div class="content">
 
-  			<img class="avatar" src="Images/s1.jpg" alt="dp">
-  			<h1>&nbsp&nbsp {{ entry }} </h1>
+  		<div class="content">
+			{% with entry.pk|stringformat:"i" as pk %}
+
+
+				{% with "Images/i"|add:pk|add:"/"|add:"Profile"|add:".jpg" as image_static_1 %}
+				<img class="avatar" src="{% static image_static_1 %}" alt="dp">
+
+				{% endwith %}
+
+
+
+			{% if user == entry.user %}
+				<a href="/home/profile/"><h1> {{ entry }} </h1></a>
+			{% else %}
+				{% with "/home"|add:"/"|add:"public/"|add:pk as url %}
+				<a href= {{ url }}><h1>{{ entry }} </h1></a>
+			{% endwith %}
+			{% endif %}
+
+			{%endwith %}
   			<hr style="background-color:rgb(232,232,232);border: 0;height: 3px">
   			<img class="post" src="{% static 'Images/s1a1.jpg' %}" alt="dp">
   		</div>

@@ -1,0 +1,26 @@
+{% extends 'market/base.html' %}
+{% block body %}
+
+
+		<!--{% load el_pagination_tags %}-->
+		<!--{% with entry_list as e %}-->
+			<!--{% lazy_paginate e %}-->
+
+
+  		{% for shop in shops %}
+  		<div class="content">
+
+  			<img class="avatar" src="{{ shop.ProfilePic.url }}" alt="dp">
+  			<h1>&nbsp&nbsp {{ shop.ShopName }} </h1>
+  			<hr style="background-color:rgb(232,232,232);border: 0;height: 3px">
+  			<img class="post" src="{{ shop.Advertisement.url }}" alt="dp">
+  		</div>
+
+		{% endfor %}
+		<!--{% show_more %}-->
+
+		<!--{%endwith %}-->
+
+{% endblock %}
+	<!--</body>-->
+<!--</html>-->

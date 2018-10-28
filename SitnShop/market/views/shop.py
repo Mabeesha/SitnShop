@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views import generic
 from django.views.generic import TemplateView, CreateView, ListView, UpdateView
-from ..forms import ShopForm
+from ..forms import ShopSignUpForm, ShopLogInForm
 from ..models import Shop
 
 from ..forms import UserForm
@@ -33,23 +33,42 @@ def loginShop(request):
             if user.is_active:
                 login(request, user)
                 shop = Shop.objects.get(user=request.user)
-                print(shop.ShopName)
+                print(shop.user.is_shop)
                 return render(request, 'market/edit_shop_profile.html', {'shop': shop})
             else:
-                return render(request, 'market/login_page.html', {'error_message': 'Your account has been disabled'})
+                return render(request, 'market/shop_login.html', {'error_message': 'Your account has been disabled'})
         else:
-            return render(request, 'market/login_page.html', {'error_message': 'Invalid login'})
+            return render(request, 'market/shop_login.html', {'error_message': 'Invalid login'})
     print("hey not a post")
-    return render(request, 'market/login_page.html')
+    return render(request, 'market/shop_login.html')
 
+
+# def loginShop(request):
+#     form = ShopLogInForm(request.POST or None)
+#     if form.is_valid():
+#         username = form.cleaned_data['username']
+#         password = form.cleaned_data['password']
+#         user = authenticate(username=username, password=password)
+#         if user is not None and Shop.objects.filter(user=user).exists() is True:
+#             if user.is_active:
+#                 login(request, user)
+#                 shop = Shop.objects.get(user=request.user)
+#                 return render(request, 'market/edit_shop_profile.html', {'shop': shop})
+#             else:
+#                 return render(request, 'market/shop_login.html', {'error_message': 'Your account has been disabled', "form": form})
+#         else:
+#             print("hey there something went wrong")
+#             return render(request, 'market/shop_login.html', {'error_message': 'Invalid login', "form": form})
+#     return render(request, 'market/shop_login.html', {"form": form})
 
 def checkFileType(file_type):
     if file_type not in IMAGE_FILE_TYPES:
         return False
     return True
 
+
 def signupShop(request):
-    form = ShopForm(request.POST or None, request.FILES or None)
+    form = ShopSignUpForm(request.POST or None, request.FILES or None)
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
@@ -61,8 +80,13 @@ def signupShop(request):
         if user is not None and form.is_valid() and Shop.objects.filter(user=user).exists() is False:
             if user.is_active:
                 login(request, user)
+                user.is_shop = True
                 shop = form.save(commit=False)
                 shop.user = request.user
+
+                user.save()
+                user.profile.is_shop = True
+                user.save()
                 shop.Advertisement = request.FILES['Advertisement']
                 shop.ProfilePic = request.FILES['ProfilePic']
                 correct_type = True
@@ -91,7 +115,8 @@ def signupShop(request):
 
 
 
-
+def edit_shop(request):
+    return redirect('market:homepage')
 
 
 

@@ -23,6 +23,7 @@ from market.views import shop, market, customer, api
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('market.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
     # api requests
     path('getshopList/', api.ShopList.as_view(), name='getshopList/'),
 ]

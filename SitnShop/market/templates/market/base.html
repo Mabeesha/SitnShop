@@ -29,7 +29,12 @@
   			<a href="{% url 'market:homepage' %}" style="float: left;font-family: 'Aclonica';"><i class="fa fa-fw fa-home"></i><h3> SitnShop</h3></a>
 
 		{% if user.is_authenticated %}
-			<a href="{% url 'market:profile' %}"><i class="fa fa-fw fa-user"></i><h3> {{ user.username }} </h3></a>
+			{% if user.profile.is_shop %}
+				<a href="{% url 'market:edit_shop' %}"><i class="fas fa-warehouse"></i><h3> {{ user.username }} </h3></a>
+			{% else %}
+				<a href="{% url 'market:edit_customer' %}"><i class="fa fa-fw fa-user"></i><h3> {{ user.username }} </h3></a>
+			{% endif %}
+
 		{% endif %}
 
 

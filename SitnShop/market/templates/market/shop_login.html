@@ -1,14 +1,16 @@
 {% extends 'market/base.html' %}
+
 {% block body %}
 
-<div class="login">
-        <h2>Shop Sign Up</h2>
+
+      <div class="login">
+        <h2>Shop Login</h2>
         <hr style="background-color:rgb(232,232,232);border: 0;height: 3px">
-        <form  method="post" enctype="multipart/form-data">
+        <form  method="post">
 			{% csrf_token %}
           <input type="text" placeholder="User name" name="username"><br>
           <input type="password" placeholder="Password" name="password"><br>
-          {% include 'market/form_template.html' %}
+
 			{% if error_message != None %}
 			<p class=" label label-danger">
 				{{error_message}}
@@ -18,5 +20,4 @@
         </form>
 
   		</div>
-	
 {% endblock %}

@@ -1,5 +1,8 @@
 todo:
 
+change hardcoded html files, use template.html and forms 
+
+
 RuntimeWarning: DateTimeField Customer.timestamp received a naive datetime (2018-10-27 14:47:22.944052) while time zone support is active.
 
 

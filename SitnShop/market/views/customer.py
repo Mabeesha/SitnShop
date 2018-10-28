@@ -34,31 +34,41 @@ class CustomerSignUpView(CreateView):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             user.set_password(password)
-            user.is_customer = True
+            user.save()
+            print(user.profile.is_shop)
+            user.profile.is_customer = True
             user.save()
             customer = Customer.objects.create(user=user, timestamp=datetime.datetime.now())
             user = authenticate(username=username, password=password)
+            # print(user.profile.is_shop)
             if user is not None:
                 if user.is_active:
                     login(request, user)
                     return redirect('market:profile')
             print("um here")
 
-        return render(request, self.template_name, {'form': form, 'error': True})
+        return render(request, self.template_name, {'form': form, 'error_message': 'something went wrong'})
 
 def loginCustomer(request):
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
         user = authenticate(username=username, password=password)
-        if user is not None:
+        if user is not None and Customer.objects.filter(user=user).exists() is True:
             if user.is_active:
                 login(request, user)
                 customer = Customer.objects.get(user=request.user)
                 print(customer.user)
-                return render(request, 'market/home.html', {'customer': customer})
+                return redirect('market:homepage')
+                # return render(request, 'market:homepage', {'customer': customer})
             else:
-                return render(request, 'market/login_page.html', {'error_message': 'Your account has been disabled'})
+                return render(request, 'market/customer_login.html', {'error_message': 'Your account has been disabled'})
         else:
-            return render(request, 'market/login_page.html', {'error_message': 'Invalid login'})
-    return render(request, 'market/login_page.html')
+            return render(request, 'market/customer_login.html', {'error_message': 'Invalid login'})
+    return render(request, 'market/customer_login.html')
+
+
+
+
+def edit_customer(request):
+    return redirect('market:homepage')

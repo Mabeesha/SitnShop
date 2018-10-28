@@ -11,8 +11,16 @@ class UserForm(forms.ModelForm):
         model = User
         fields = ['username', 'email', 'password']
 
+class ShopLogInForm(forms.ModelForm):
 
-class ShopForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'password']
+
+
+
+
+class ShopSignUpForm(forms.ModelForm):
 
     class Meta:
         model = Shop

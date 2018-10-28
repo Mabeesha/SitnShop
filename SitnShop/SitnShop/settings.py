@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'el_pagination',
     'market.apps.MarketConfig',
+    'rest_framework',
 
 
 ]

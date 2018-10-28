@@ -23,7 +23,7 @@ app_name = 'market'
 
 urlpatterns = [
         path('', shop.IndexView.as_view(), name='homepage'),
-        path('login/', market.LoginINAs, name="loginAs"),
+        path('login/', market.LoginINAs, name='loginAs'),
         path('login/loginShop/', shop.loginShop, name="loginShop"),
         path('login/signupShop/', shop.signupShop, name="signupShop"),
 
@@ -34,8 +34,9 @@ urlpatterns = [
         path('login/signupCustomer/', customer.CustomerSignUpView.as_view(), name="signupCustomer"),
         path('login/loginCustomer/', customer.loginCustomer, name="loginCustomer"),
 
-        path('profile/', market.Profile, name="profile"),
-        path("logout/", market.LogOUT, name="logout"),
+
+        path('profile/', market.Profile, name='profile'),
+        path('logout/', market.LogOUT, name='logout'),
         path("public/<pk>/", market.public_profile, name="public_profile"),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

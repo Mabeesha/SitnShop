@@ -21,7 +21,7 @@ def Profile(request):
     c = Shop.objects.filter(user=user)
     if user.is_anonymous or len(c) == 0:
         print("hey you are not you")
-        return redirect("/home/")
+        return redirect('market:homepage')
 
     else:
 
@@ -38,7 +38,7 @@ def public_profile(request, pk):
 
 
     if len(u) == 0:
-        return redirect("/home/")
+        return redirect('market:homepage')
 
     else:
         c = u[0]
@@ -54,4 +54,4 @@ def LogOUT(request):
     user = request.user
     if user is not None:
         logout(request)
-    return redirect("/home/login/")
+    return redirect('market:loginAs')

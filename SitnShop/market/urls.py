@@ -35,7 +35,7 @@ urlpatterns = [
         path('login/loginCustomer/', customer.loginCustomer, name="loginCustomer"),
 
 
-        path('edit_shop/', shop.edit_shop, name='edit_shop'),
+        path('edit_shop/', shop.create_addvertisement, name='edit_shop'),
         path('edit_customer/', customer.edit_customer, name='edit_customer'),
 
         path('profile/', market.Profile, name='profile'),

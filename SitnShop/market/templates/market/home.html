@@ -7,15 +7,18 @@
 			<!--{% lazy_paginate e %}-->
 
 
-  		{% for shop in shops %}
+  		{% for add in adds %}
   		<div class="content" style="margin-top: 80px;">
 
-  			<img class="avatar" src="{{ shop.ProfilePic.url }}" alt="dp">
-			<a href="#"><h1>{{ shop.ShopName }}</h1></a><br>
-			<h4><i class="fas fa-map-marker-alt"></i>&nbsp{{ shop.Address }}. </h4>
+  			<img class="avatar" src="{{ add.shop.ProfilePic.url }}" alt="dp">
+			<a href="#"><h1>{{ add.shop.ShopName }}</h1></a><br>
+			<p class=" label label-danger">
+				{{add.Advertisement_text}}
+			</p>
+			<h4><i class="fas fa-map-marker-alt"></i>&nbsp{{ add.shop.Address }}. </h4>
   			<a href="#" class="follow" style="float: right;color: rgb(72,72,72);font-size: 14px;"><i class="fas fa-heart" style="font-size: 12px;"></i><h5>&nbspFollow</h5></a>
   			<hr style="background-color: rgb(220,220,220);border: 0;" size="3">
-  			<img class="post" src="{{ shop.Advertisement.url }}" alt="dp">
+  			<img class="post" src="{{ add.Advertisement_data.url }}" alt="dp">
   		</div>
 
 		{% endfor %}

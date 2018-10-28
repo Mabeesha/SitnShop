@@ -27,7 +27,6 @@ class Shop(models.Model):
     ShopName = models.CharField(max_length=255)
     Address = models.CharField(max_length=255)
     NumOfAds = models.IntegerField()
-    Advertisement = models.FileField()
     ProfilePic = models.FileField()
 
     timestamp = models.DateTimeField()
@@ -35,6 +34,14 @@ class Shop(models.Model):
 
     def __str__(self):
         return str(self.ShopName)
+
+class Advertisement(models.Model):
+    shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
+    Advertisement_text = models.CharField(max_length=255)
+    Advertisement_data = models.FileField()
+    def __str__(self):
+        return self.Advertisement_text
+
 
 class Customer(models.Model):
     # user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)

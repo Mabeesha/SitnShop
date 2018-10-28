@@ -26,6 +26,8 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     # api requests
     path('getshopList/', api.ShopList.as_view(), name='getshopList/'),
+    path('getuserList/', api.UserList.as_view(), name='getuserList/'),
+
 ]
 
 if settings.DEBUG:

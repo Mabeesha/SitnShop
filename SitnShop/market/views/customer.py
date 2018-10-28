@@ -58,7 +58,7 @@ def loginCustomer(request):
             if user.is_active:
                 login(request, user)
                 customer = Customer.objects.get(user=request.user)
-                print(customer.user)
+                # print(customer.user)
                 return redirect('market:homepage')
                 # return render(request, 'market:homepage', {'customer': customer})
             else:

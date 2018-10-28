@@ -1,4 +1,4 @@
-from .models import Customer, Shop
+from .models import Customer, Shop, Advertisement
 from django import forms
 from django.db import transaction
 from django.contrib.auth.models import User
@@ -17,14 +17,18 @@ class ShopLogInForm(forms.ModelForm):
         model = User
         fields = ['username', 'password']
 
+class AdvertisementForm(forms.ModelForm):
 
+    class Meta:
+        model = Advertisement
+        fields = ['Advertisement_text', 'Advertisement_data']
 
 
 class ShopSignUpForm(forms.ModelForm):
 
     class Meta:
         model = Shop
-        fields = ['ShopOwner', 'ShopName', 'Address', 'NumOfAds', 'ProfilePic', 'Advertisement']
+        fields = ['ShopOwner', 'ShopName', 'Address', 'NumOfAds', 'ProfilePic']
 
 
 

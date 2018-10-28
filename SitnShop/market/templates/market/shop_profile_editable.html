@@ -1,0 +1,36 @@
+{% extends 'market/base.html' %}
+{% block body %}
+
+
+
+    <div >
+        <h3>{{ user.username }}'s Advertisements</h3>
+    </div>
+    {% if adds %}
+        {% for add in adds %}
+            <div class="content" style="margin-top: 80px;">
+
+                <img class="avatar" src="{{ add.shop.ProfilePic.url }}" alt="dp">
+                <a href="#"><h1>{{ add.shop.ShopName }}</h1></a><br>
+                <p class=" label label-danger">
+                    {{add.Advertisement_text}}
+                </p>
+                <h4><i class="fas fa-map-marker-alt"></i>&nbsp{{ add.shop.Address }}. </h4>
+                <a href="#" class="follow" style="float: right;color: rgb(72,72,72);font-size: 14px;"><i class="fas fa-heart" style="font-size: 12px;"></i><h5>&nbspFollow</h5></a>
+                <hr style="background-color: rgb(220,220,220);border: 0;" size="3">
+                <img class="post" src="{{ add.Advertisement_data.url }}" alt="dp">
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="col-sm-12">
+            <br>
+            <a href="{% url 'market:create_addvertisement' %}">
+                <button type="button" class="btn btn-success">
+                    <span class="glyphicon glyphicon-plus"></span>&nbsp; Create Advertisement
+                </button>
+            </a>
+        </div>
+    {% endif %}
+
+
+{% endblock %}

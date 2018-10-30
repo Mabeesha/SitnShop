@@ -18,6 +18,7 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from .views import shop, market, customer
+from django.conf.urls import url
 
 app_name = 'market'
 
@@ -35,12 +36,21 @@ urlpatterns = [
         path('login/loginCustomer/', customer.loginCustomer, name="loginCustomer"),
 
 
-        path('edit_shop/', shop.create_addvertisement, name='edit_shop'),
+        path('edit_shop/', shop.edit_shop, name='edit_shop'),
         path('edit_customer/', customer.edit_customer, name='edit_customer'),
 
-        path('profile/', market.Profile, name='profile'),
+
+        # path('create_addvertisement/', shop.create_addvertisement, name='create_addvertisement'),
+        # url(r'^delete_advertisement/(?P<pk>\d+)/$', shop.AdvertisementDelete.as_view(), name='delete_advertisement'),
+        # url(r'^update_advertisement/(?P<pk>\d+)/$', shop.AdvertisementUpdate.as_view(), name='update_advertisement'),
+
+        path('delete_advertisement/<int:pk>', shop.AdvertisementDelete.as_view(), name='delete_advertisement'),
+        path('update_advertisement/<int:pk>', shop.AdvertisementUpdate.as_view(), name='update_advertisement'),
+
+
+        path('public_profile/<int:pk>', shop.ShopIndexView.as_view(), name='public_profile'),
         path('logout/', market.LogOUT, name='logout'),
-        path("public/<pk>/", market.public_profile, name="public_profile"),
+
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

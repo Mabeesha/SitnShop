@@ -23,6 +23,12 @@ class AdvertisementForm(forms.ModelForm):
         model = Advertisement
         fields = ['Advertisement_text', 'Advertisement_data']
 
+class UpdateAdvertisementForm(forms.ModelForm):
+
+    class Meta:
+        model = Advertisement
+        fields = ['Advertisement_text']
+
 
 class ShopSignUpForm(forms.ModelForm):
 

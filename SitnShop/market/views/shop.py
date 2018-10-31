@@ -108,50 +108,13 @@ def signupShop(request):
 
 
 
-
-def edit_shop(request):
-
-    shop = Shop.objects.get(user=request.user)
-    adds = Advertisement.objects.filter(shop=shop)
-
-    updateForm = UpdateAdvertisementForm(request.POST or None, request.FILES or None)
-    form = AdvertisementForm(request.POST or None, request.FILES or None)
-    # shop = get_object_or_404(Shop, pk=shop_id)
-    shop = Shop.objects.get(user=request.user)
-    if form.is_valid():
-        advertisement = form.save(commit=False)
-        advertisement.shop = shop
-        advertisement.Advertisement_data = request.FILES['Advertisement_data']
-        correct_type = True
-        correct_type = checkFileType(advertisement.Advertisement_data.url.split('.')[-1]) and correct_type
-        if correct_type is False:
-            context = {
-                'advertisement': advertisement,
-                'form': form,
-                'updateForm': updateForm,
-                'shop': shop,
-                'adds': adds,
-                'error_message': 'Image file must be PNG, JPG, or JPEG',
-            }
-            return render(request, 'market/shop_profile_editable.html', context)
-        advertisement.save()
-        # redirect('market:homepage')
-        # return render(request, 'market:homepage', {'shop': album})
-    numberOfAdds = Advertisement.objects.filter(shop=shop).count()
-    withinAddLimit = numberOfAdds < shop.NumOfAds
-    context = {
-        'form': form,
-        'updateForm': updateForm,
-        'shop': shop,
-        'adds': adds,
-        'withinAddLimit': withinAddLimit
-    }
-
-    return render(request, 'market/shop_profile_editable.html', context)
-
 #
-# def create_addvertisement(request):
+# def edit_shop(request):
 #
+#     shop = Shop.objects.get(user=request.user)
+#     adds = Advertisement.objects.filter(shop=shop)
+#
+#     updateForm = UpdateAdvertisementForm(request.POST or None, request.FILES or None)
 #     form = AdvertisementForm(request.POST or None, request.FILES or None)
 #     # shop = get_object_or_404(Shop, pk=shop_id)
 #     shop = Shop.objects.get(user=request.user)
@@ -165,25 +128,51 @@ def edit_shop(request):
 #             context = {
 #                 'advertisement': advertisement,
 #                 'form': form,
+#                 'updateForm': updateForm,
+#                 'shop': shop,
+#                 'adds': adds,
 #                 'error_message': 'Image file must be PNG, JPG, or JPEG',
 #             }
-#             return render(request, 'market/create_advertisement.html', context)
+#             return render(request, 'market/shop_profile_editable.html', context)
 #         advertisement.save()
-#         redirect('market:homepage')
+#         # redirect('market:homepage')
 #         # return render(request, 'market:homepage', {'shop': album})
+#     numberOfAdds = Advertisement.objects.filter(shop=shop).count()
+#     withinAddLimit = numberOfAdds < shop.NumOfAds
 #     context = {
-#         "form": form,
+#         'form': form,
+#         'updateForm': updateForm,
+#         'shop': shop,
+#         'adds': adds,
+#         'withinAddLimit': withinAddLimit
 #     }
-#     return render(request, 'market/create_advertisement.html', context)
-
 #
-# def delete_advertisement(request,advertisement_id):
-#     print("awa")
-#     advertisement = Advertisement.objects.get(pk=advertisement_id)
-#     advertisement.delete()
-#     shop = Shop.objects.get(user=request.user)
-#     adds = Advertisement.objects.filter(shop=shop)
-#     return render(request, 'market/shop_profile_editable.html', {'shop': shop, 'adds': adds})
+#     return render(request, 'market/shop_profile_editable.html', context)
+
+
+def edit_shop(request):
+
+    shop = Shop.objects.get(user=request.user)
+    adds = Advertisement.objects.filter(shop=shop)
+
+    updateForm = UpdateAdvertisementForm(request.POST or None, request.FILES or None)
+    createform = AdvertisementForm(request.POST or None, request.FILES or None)
+    # shop = get_object_or_404(Shop, pk=shop_id)
+    shop = Shop.objects.get(user=request.user)
+    numberOfAdds = Advertisement.objects.filter(shop=shop).count()
+    withinAddLimit = numberOfAdds < shop.NumOfAds
+    context = {
+        'form': createform,
+        'updateForm': updateForm,
+        'shop': shop,
+        'adds': adds,
+        'withinAddLimit': withinAddLimit
+    }
+
+    return render(request, 'market/shop_profile_editable.html', context)
+
+
+
 
 class AdvertisementDelete(DeleteView):
     model = Advertisement
@@ -195,3 +184,27 @@ class AdvertisementUpdate(UpdateView):
     fields = ['Advertisement_text']
     # form_class = AdvertisementForm
     success_url = reverse_lazy('market:edit_shop')
+
+
+class AdvertisementCreate(CreateView):
+    model = Advertisement
+    # fields = ['Advertisement_text']
+    form_class = AdvertisementForm
+
+    def get_success_url(self):
+        return 'market:edit_shop'
+
+    def form_valid(self, form):
+        advertisement = form.save(commit=False)
+        shop = Shop.objects.get(user=self.request.user)
+        print(self.get_context_data())
+        advertisement.shop = Shop.objects.get(user=self.request.user)
+        advertisement.Advertisement_data = self.request.FILES['Advertisement_data']
+        correct_type = True
+        correct_type = checkFileType(advertisement.Advertisement_data.url.split('.')[-1]) and correct_type
+        if correct_type is False:
+            return redirect(self.get_success_url())
+        advertisement.save()
+        return redirect(self.get_success_url())
+
+

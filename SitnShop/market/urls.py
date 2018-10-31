@@ -46,7 +46,7 @@ urlpatterns = [
 
         path('delete_advertisement/<int:pk>', shop.AdvertisementDelete.as_view(), name='delete_advertisement'),
         path('update_advertisement/<int:pk>', shop.AdvertisementUpdate.as_view(), name='update_advertisement'),
-
+        path('create_advertisement/', shop.AdvertisementCreate.as_view(), name='create_advertisement'),
 
         path('public_profile/<int:pk>', shop.ShopIndexView.as_view(), name='public_profile'),
         path('logout/', market.LogOUT, name='logout'),

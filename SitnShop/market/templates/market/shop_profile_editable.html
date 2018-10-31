@@ -47,7 +47,7 @@
     {% if withinAddLimit %}
          <div class="content" style="margin-top: 80px;">
                 <h2>Create Advertisement</h2>
-                <form  action="{% url 'market:edit_shop' %}" method="post" enctype="multipart/form-data">
+                <form  action="{% url 'market:create_advertisement' %}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                         {% for field in form %}
                             <hr style="background-color:rgb(232,232,232);border: 0;height: 3px">
@@ -70,4 +70,10 @@
 
          </div>
     {% endif %}
+<script type="text/javascript">
+    var no_record_check = {{ no_record_check }};
+    if (no_record_check == 0) {
+        alert('No record found');
+    }
+</script>
 {% endblock %}

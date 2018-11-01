@@ -48,6 +48,9 @@ urlpatterns = [
         path('update_advertisement/<int:pk>', shop.AdvertisementUpdate.as_view(), name='update_advertisement'),
         path('create_advertisement/', shop.AdvertisementCreate.as_view(), name='create_advertisement'),
 
+        path('check_follow_status/', market.checkFollowStatus, name='check_follow_status'),
+        path('follow_shop/', market.shop_follow, name='follow_shop'),
+
         path('public_profile/<int:pk>', shop.ShopIndexView.as_view(), name='public_profile'),
         path('logout/', market.LogOUT, name='logout'),
 

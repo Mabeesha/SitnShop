@@ -51,3 +51,12 @@ class Customer(models.Model):
 
     def __str__(self):
         return str(self.user.username)
+
+
+class Follow(models.Model):
+    following = models.ForeignKey(User, related_name="user_from", on_delete=models.CASCADE)
+    follower = models.ForeignKey(User, related_name="user_to", on_delete=models.CASCADE)
+    follow_time = models.DateTimeField(auto_now=True)
+
+    def __unicode__(self):
+        return str(self.follow_time)

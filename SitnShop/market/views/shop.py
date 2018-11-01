@@ -6,7 +6,7 @@ from django.utils.decorators import method_decorator
 from django.views import generic
 from django.views.generic import TemplateView, CreateView, ListView, UpdateView, DeleteView
 from ..forms import ShopSignUpForm, ShopLogInForm
-from ..models import Shop, Advertisement
+from ..models import Shop, Advertisement, Follow
 
 from ..forms import UserForm, AdvertisementForm, UpdateAdvertisementForm
 import datetime
@@ -15,12 +15,21 @@ IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg']
 
 class ShopIndexView(generic.ListView):
 
-    template_name = 'market/home.html'
-    context_object_name = 'adds'
+    template_name = 'market/shop_profile.html'
+    context_object_name = 'shop'
     def get_queryset(self):
-        print(self.kwargs['pk'])
+        # print(self.kwargs['pk'])
         shop = Shop.objects.get(pk=self.kwargs['pk'])
-        return Advertisement.objects.filter(shop=shop)
+        # print(Advertisement.objects.filter(shop=shop))
+        # print("@ shopindexview")
+        # print(shop.id)
+        followers = Follow.objects.filter(follower=shop.user).count()
+        print("num of followers  ",followers)
+        data = {'adds': Advertisement.objects.filter(shop=shop),
+                'shop': shop,
+                'followers': followers}
+
+        return data
 
 
 class IndexView(generic.ListView):

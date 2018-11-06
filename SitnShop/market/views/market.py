@@ -11,7 +11,7 @@ from el_pagination.views import AjaxListView
 def checkFollowStatus(request):
 
 
-    shop_id = request.GET.get('id', None)
+    shop_id = request.POST.get('id', None)
     print("shop id", shop_id)
     if request.user.is_anonymous:
         return JsonResponse({
@@ -40,8 +40,8 @@ def checkFollowStatus(request):
         )
 
 def shop_follow(request):
-    user_id = request.GET.get('id', None)
-    action = request.GET.get('action', '')
+    user_id = request.POST.get('id', None)
+    action = request.POST.get('action', '')
 
     FOLLOW_ACTION = 'follow'
     UNFOLLOW_ACTION = 'unfollow'
@@ -55,7 +55,7 @@ def shop_follow(request):
 
     if action not in [FOLLOW_ACTION, UNFOLLOW_ACTION]:
         return JsonResponse({
-            'status':'ko',
+            'status': 'action not defined',
             'message': 'Unknown action {}'.format(action)}
         )
 

@@ -1,54 +1,10 @@
 {% extends 'market/base.html' %}
 
 
+
 {% block javascript %}
-  <script>
-
-
-
-
-  $(document).ready(function() {
-  	var action = $('.followProfile').attr('action')
-  	var shop_id = $('.followProfile').attr('shop_id')
-	$.ajax({ url: "/check_follow_status/",
-			data: {
-			  id: shop_id
-			},
-			success: function(data){
-			console.log(data)
-			action = data.action
-			console.log(action)
-			   $('.followProfile').attr('action', action)
-		       $('#follow_text').html(action)
-			   <!--alert(data.message);-->
-        	}
-        });
-  });
-
-  $(document).ready(function() {
-	$('.followProfile').on('click', function(){
-    	console.log("here " + $(this).attr('shop_id') + " " + $(this).attr('action'))
-    	var action = $('.followProfile').attr('action')
-		var shop_id = $('.followProfile').attr('shop_id')
-		$.ajax({ url: "/follow_shop/",
-			data: {
-			  id: shop_id,
-			  action: action
-			},
-			success: function(data){
-			console.log(data)
-			action = data.action
-			console.log(action)
-			   $('.followProfile').attr('action', action)
-			   $('#follow_text').html(action)
-			   <!--alert(data.message);-->
-			}
-		});
-    });
-  });
-
-
-  </script>
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+ 	<script src="/static/js/shop_profile.js"></script>
 {% endblock %}
 
 
@@ -66,7 +22,7 @@
 
 
 			<br>
-			<h4 class="followers">2375 followers</h4>
+			<h4 class="followers">{{ shop.n_followers }} followers</h4>
 			<div class="CoverContainer">
 			  <img src="{{ shop.shop.ProfilePic.url }}" alt="Avatar" class="CoverImage">
 			</div>

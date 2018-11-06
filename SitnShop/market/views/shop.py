@@ -23,11 +23,11 @@ class ShopIndexView(generic.ListView):
         # print(Advertisement.objects.filter(shop=shop))
         # print("@ shopindexview")
         # print(shop.id)
-        followers = Follow.objects.filter(follower=shop.user).count()
-        print("num of followers  ",followers)
+        n_followers = Follow.objects.filter(follower=shop.user).count()
+        print("num of followers  ",n_followers)
         data = {'adds': Advertisement.objects.filter(shop=shop),
                 'shop': shop,
-                'followers': followers}
+                'n_followers': n_followers}
 
         return data
 

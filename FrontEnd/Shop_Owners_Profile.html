@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+<html>
+	 <head>
+		  <title >SitnShop</title>
+      <link rel="shortcut icon" type="image/x-icon" href="Images/icon2.jpg" />
+		  <meta name="viewport" content="width=device-width, initial-scale=1">
+		  <script src="scriptes.js"></script>
+		  <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		  <script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+		  <link rel="stylesheet" href="styles.css" type="text/css" >
+		  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+		  <link href='https://fonts.googleapis.com/css?family=Aclonica' rel='stylesheet'>
+		  <link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css">
+		  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
+	 </head>
+
+	 <body>
+
+		  <div class="navbar">
+  			 <a href="profile_index.html" style="float: left;font-family: 'Aclonica';"><img class="icon" src="Images/icon2.jpg" alt="Sicon"><h3> itnShop</h3></a> 
+  			 <a href="javascript:void(0)" class="closebtn" onclick="openNav();"><i class="fa fa-fw fa-envelope"></i><h3> Contact</h3></a> 
+  			 <a href="index.html"><i class="fas fa-arrow-alt-circle-right"></i><h3> Logout</h3></a>
+         <a href="#"><img class="icon2" src="Images/s1.jpg" alt="dpicon"><h3 style="margin-left: 5px;"> Rahal's Shop</h3></a>
+  			 <div class="search-container">
+    		  <form action="/action_page.php">
+    			  <button type="submit"><i class="fa fa-search"></i></button>
+      			<input type="text" placeholder="Search" name="search">
+      		</form>
+  		  </div>
+      </div>
+
+      <!-- Contact overlay -->
+      <div id="myNav" class="ContactOverlay"> 
+        <!-- Overlay content -->
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="ContactOverlay-content">
+          <div class="ContactContainer">
+            <div style="text-align:center">
+              <h2>Contact Us</h2>
+              <h4>Do you have anything to say? leave us a message:</h4>
+            </div>
+            <div class="ContactRow">
+              <div class="ContactColumn">
+                <img src="Images/st1.jpg" style="width:100%">
+              </div>
+              <div class="ContactColumn">
+                <form action="/action_page.php">
+                  <label for="fname"><h4>First Name:</h4></label>
+                  <input type="text" id="fname" name="firstname" placeholder="Your name.."><br>
+                  <label for="lname"><h4>Last Name:</h4></label>
+                  <input type="text" id="lname" name="lastname" placeholder="Your last name.."><br>
+                  <label for="lname"><h4>Your message:</h4></label>
+                  <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
+                  <input type="submit" value="Submit">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- cover div -->
+      <div class="cover" style="margin-top: 100px;">
+        <h1 class="profile" style="">RAHAL'S SHOP</h1>
+        <i class="fas fa-circle" style="font-size: 10px;color: rgb(0,200,0);"></i> <!-- green( rgb(0,200,0) ) , red( 224,0,0 ) -->
+          <label class="switch">
+            <input type="checkbox" checked>
+            <span class="slider round"></span>
+          </label>
+        <br>
+        <h4 class="followers">2375 followers</h4>
+        <div class="CoverContainer">
+          <img src="Images/s1c2.jpg" alt="Avatar" class="CoverImage">
+          <div class="CoverOverlay">
+            <a href="#" class="CoverEditIcon" title="User Profile">
+              <i class="fas fa-marker"></i>
+            </a>
+          </div>
+        </div>
+        <div class="dpContainer">
+          <img src="Images/s1.jpg" alt="Avatar" class="dpImage">
+          <div class="dpOverlay">
+            <a href="#" class="dpEditIcon" title="User Profile">
+              <i class="fas fa-marker"></i>
+            </a>
+            </div>
+        </div>
+        <hr style="background-color: rgb(220,220,220);border: 0;margin-top: 10px;" size="3">
+        <h1 class="aboutHead">About :</h1>
+        <h1 class="aboutDetails"><i class="fas fa-user about"></i>  Rahal Madawatte (owner)</h1>
+        <a href="#"><h1 class="aboutDetailsLink"><i class="fas fa-map-marker-alt about"></i> Gohagoda rd., Gohagoda.</h1></a>
+        <h1 class="aboutDetails"><i class="fas fa-clock about"></i> Open from 8.00 a.m. - 6.00 p.m. (Sunday - 8.00 a.m. to 12.00 p.m.)</h1>
+        <a href="#"><h1 class="aboutDetailsLink"><i class="fab fa-facebook-square about"></i> https://www.facebook.com/rahal.medawatte</h1></a>
+        <a href="#"><h1 class="aboutDetailsLink"><i class="fab fa-instagram about"></i> https://www.instagram.com/rahal_m22/</h1></a>
+        <a href="#"><h1 class="aboutDetailsLink" style="font-size: 12px;">Edit details</h1></a>
+      </div>
+
+
+      <div class="content" style="text-align: center;">
+        <h2 style="font-size: 20px;">Whats new?</h2>
+        <hr style="background-color: rgb(220,220,220);border: 0;" size="3">
+        <!-- gnvbnvbn -->        
+        <div class="Neon Neon-theme-dragdropbox" style="margin-top: 30px;text-align: center;">
+          <form id="form01" action="action.php" method="post" >
+          <input style="z-index: 999; opacity: 0; width: 320px; height: 200px; position: absolute; right: 0px; left: 0px; margin-right: auto; margin-left: auto;" name="files[]" id="filer_input2" multiple="multiple" type="file" accept="image/png, image/jpeg, image/jpg" onchange="readURL(this);">
+          <div class="Neon-input-dragDrop">
+            <div class="Neon-input-inner">
+              <div class="Neon-input-icon">
+                <i id="image_icon" class="fa fa-file-image-o"></i>
+                <img id="Uimage" src="#" style="display: none;margin-top: 25px">
+              </div>
+            <div class="Neon-input-text">
+              <h4 id="drop">Drag&amp;Drop files here</h4>
+              <span id="or" style="display:inline-block; margin: 15px 0">or</span>
+            </div>
+            	<button id="browse" class="Neon-input-choose-btn blue">Browse Files</button>
+        	</div>
+          </div>
+          </form>
+        </div>
+        <button class="Neon-input-choose-btn blue" type="submit" form="form01" style="padding-left: 30px;padding-right: 30px;display: inline;margin-bottom: 10px;">Upload</button>
+        <button id="cancel" class="Neon-input-choose-btn blue" style="padding-left: 30px;padding-right: 30px;display: none; margin-left: 10px;margin-bottom: 10px;">Cancel</button>
+
+        
+      </div>
+
+      <div class="content">
+        <img class="avatar" src="Images/s1.jpg" alt="dp">
+        <a href="#"><h1>Rahal's Shop </h1></a><br>
+        <h4><i class="fas fa-map-marker-alt"></i>&nbspGohagoda road, Gohagoda. </h4>
+        <hr style="background-color: rgb(220,220,220);border: 0;" size="3">
+        <img class="post" src="Images/s1a1.jpg" alt="dp">
+      </div>
+
+  		
+  		
+
+  		
+
+	</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>SitnShop</title>
+		<link rel="shortcut icon" type="image/x-icon" href="Images/icon2.jpg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="scriptes.js">
+    </script>
+		<link rel="stylesheet" href="styles.css" type="text/css" >
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+		<link href='https://fonts.googleapis.com/css?family=Aclonica' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
+	</head>
+
+	<body>
+
+		<div class="navbar"> <!-- navbar -->
+        <a href="index.html" style="float: left;font-family: 'Aclonica';"><img class="icon" src="Images/icon2.jpg" alt="Sicon"><h3> itnShop</h3></a> 
+        <a href="javascript:void(0)" class="closebtn" onclick="openNav();"><i class="fa fa-fw fa-envelope"></i><h3> Contact</h3></a> 
+        <a href="index.html"><i class="fas fa-arrow-alt-circle-right"></i><h3> Logout</h3></a>
+         <a href="profile.html"><img class="icon2" src="Images/c1.jpg" alt="dpicon"><h3 style="margin-left: 5px;"> Hiruna</h3></a>
+        <div class="search-container">
+          <form action="/action_page.php">
+            <button type="submit"><i class="fa fa-search"></i></button>
+              <input type="text" placeholder="Search" name="search">
+              
+          </form>
+        </div>
+
+    </div>
+
+     <!-- Contact overlay -->
+    <div id="myNav" class="ContactOverlay">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <div class="ContactOverlay-content">
+        <div class="ContactContainer">
+          <div style="text-align:center">
+            <h2>Contact Us</h2>
+            <h4>Do you have anything to say? leave us a message:</h4>
+          </div>
+          <div class="ContactRow">
+            <div class="ContactColumn">
+              <img src="Images/st1.jpg" style="width:100%">
+            </div>
+            <div class="ContactColumn">
+              <form action="/action_page.php">
+                <label for="fname"><h4>First Name:</h4></label>
+                <input type="text" id="fname" name="firstname" placeholder="Your name.."><br>
+                <label for="lname"><h4>Last Name:</h4></label>
+                <input type="text" id="lname" name="lastname" placeholder="Your last name.."><br>
+                <label for="lname"><h4>Your message:</h4></label>
+                <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
+                <input type="submit" value="Submit">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Status Bar -->
+    <div class="statusbar">
+      <div>
+        <a href="javascript:void(0)" class="closebtn" onclick="openStatus();"><img class="status" src="Images/s2.jpg" alt="status01"></a>
+        <h4 class="statusName">Punki shop pvt. ltd.</h4>
+      </div>
+      <div>
+        <a href="javascript:void(0)" class="closebtn" onclick="openStatus();"><img class="status" src="Images/s2.jpg" alt="status01"></a>
+        <h4 class="statusName">Punki's Shop......................................</h4>
+      </div>
+      <div>
+        <a href="javascript:void(0)" class="closebtn" onclick="openStatus();"><img class="status" src="Images/s2.jpg" alt="status01"></a>
+        <h4 class="statusName">Punki's Shop</h4>
+      </div>
+      <div>
+        <a href="javascript:void(0)" class="closebtn" onclick="openStatus();"><img class="status" src="Images/s2.jpg" alt="status01"></a>
+        <h4 class="statusName">Punki's Shop</h4>
+      </div>
+      <div>
+        <a href="javascript:void(0)" class="closebtn" onclick="openStatus();"><img class="status" src="Images/s2.jpg" alt="status01"></a>
+        <h4 class="statusName">Punki's Shop</h4>
+      </div>
+      <div>
+        <a href="javascript:void(0)" class="closebtn" onclick="openStatus();"><img class="status" src="Images/s2.jpg" alt="status01"></a>
+        <h4 class="statusName">Punki's Shop</h4>
+      </div>
+      <div>
+        <a href="javascript:void(0)" class="closebtn" onclick="openStatus();"><img class="status" src="Images/st2.jpg" alt="status02"></a>
+        <h4 class="statusName">Punki's Shop</h4>
+      </div>
+      <div>
+        <a href="javascript:void(0)" class="closebtn" onclick="openStatus();"><img class="status" src="Images/st3.jpg" alt="status03"></a>
+        <h4 class="statusName">Punki's Shop</h4>
+      </div>
+      <div>
+        <a href="javascript:void(0)" class="closebtn" onclick="openStatus();"><img class="status" src="Images/st4.jpg" alt="status04"></a>
+        <h4 class="statusName">Punki's Shop</h4>
+      </div>
+      <div>
+        <a href="javascript:void(0)" class="closebtn" onclick="openStatus();"><img class="status" src="Images/st5.jpg" alt="status05"></a>
+        <h4 class="statusName">Punki's Shop</h4>
+      </div>
+    </div>
+    <!-- Status Overlay -->
+    <div id="status" class="StatusOverlay"> <!-- Contact overlay -->
+      <!-- Overlay content -->
+      <a href="javascript:void(0)" class="closebtn" onclick="closeStatus()">&times;</a>
+      <div class="StatusOverlay-content">
+
+        <div class="status" style="margin-top: 50px;">
+            <span id="progressBar" class="StatusProgressBar">.</span>
+            <img class="statusDp" src="Images/s2.jpg" alt="dp">
+            <a href="#"><h1 class="status">Punky's Shop </h1></a><br>
+            <h4>17 hours ago</h4>
+            <img class="statusPost" src="Images/a1.jpg" alt="dp">
+            <div class="StatusPostOverlay">
+              <a href="#" class="StatusChangeIconRight" title="User Profile">
+                <i class="fas fa-chevron-right"></i>
+              </a>
+              <a href="#" class="StatusChangeIconLeft" title="User Profile">
+                <i class="fas fa-chevron-left"></i>
+              </a>
+            </div>
+        </div>
+      </div>
+    </div>
+  		
+  	<div class="content" style="margin-top: 50px;">
+  			<img class="avatar" src="Images/s1.jpg" alt="dp">
+  			<a href="#"><h1 class="post">Rahal's Shop </h1></a><br>
+  			<h4><i class="fas fa-map-marker-alt"></i>&nbspGohagoda road, Gohagoda. </h4>
+  			<a href="#" class="follow" style="float: right;color: rgb(72,72,72);font-size: 14px;"><i class="fas fa-heart heart" style="font-size: 12px;"></i><h5>&nbspUnfollow</h5></a>
+  			<hr style="background-color: rgb(220,220,220);border: 0;" size="3">
+  			<img class="post" src="Images/s1a1.jpg" alt="dp">
+  			<hr style="background-color: rgb(220,220,220);border: 0;" size="3">
+  	</div>
+
+
+  		
+
+	</body>
+</html>

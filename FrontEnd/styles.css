@@ -11,7 +11,7 @@ div.content
 	background-color: rgb(255,255,255);
 	padding : 10px 30px 10px 30px;
 	margin: auto;
-	margin-top: 100px;
+	margin-top: 50px;
   border-radius: 10px;
   border-color: rgb(220,220,220);
   border-style: solid;
@@ -41,7 +41,7 @@ hr
 
 /* image */
 
-img.avatar
+img.avatar /* icons of the shops in posts */
 {
 	width: 70px;
 	height: 70px;
@@ -49,23 +49,38 @@ img.avatar
 	display: inline;
 	float : left;
 }
-img.icon
+img.icon /*websites icon*/
 {
   width: 15px;
   height: 15px;
   border-radius: 50%;
   border : solid;
-  border-width: 2px;
+  border-width: 0px;
   display: inline;
   float : left;
 }
-img.icon2
+img.icon2 /* navbar profile icon*/
 {
   width: 25px;
   height: 25px;
   border-radius: 50%;
   display: inline;
   float : left;
+}
+img.status /*status images*/
+{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: solid;
+  border-color: rgb(220,220,220);
+  display: inline-block;
+  margin: auto;
+  margin-top: 20px; 
+  margin-bottom: 6px;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 1px;
 }
 img.post
 {
@@ -78,7 +93,7 @@ img.post
 
 /* Text */
 
-h1 /*shop name font*/
+h1 /*shop name font in posts*/
 {
 	font-family: 'Open Sans', sans-serif;
   font-weight: 400;
@@ -98,8 +113,85 @@ h1:hover
   cursor: pointer;
   text-decoration: underline;
 }
+h1.profile /* shope owner's profile text*/
+{
+  font-family: 'Open Sans', sans-serif;
+  color:rgb(72,72,72);
+  text-align: left;
+  margin-top: 25px;
+  display: inline-block;
+
+  margin-left: 200px;
+  margin-bottom: 0px;
+  font-weight: 800;
+  font-size: 30px;
+}
+h1.profile:hover
+{
+  text-decoration: none;
+}
+h1.aboutHead
+{
+  font-family: 'Open Sans', sans-serif;
+  color:rgb(72,72,72);
+  text-align: left;
+  margin-top: 10px;
+  margin-left: 30px;
+  margin-bottom: 10px;
+  font-weight: 400;
+  font-size: 16px;
+  display: block;
+}
+h1.aboutHead:hover
+{
+  color:rgb(72,72,72);
+  cursor: pointer;
+  text-decoration: none;
+}
+h1.aboutDetails
+{
+  font-family: 'Open Sans', sans-serif;
+  color:rgb(72,72,72);
+  text-align: left;
+  margin-left: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-weight: 400;
+  font-size: 13px; 
+  display: block; 
+}
+h1.aboutDetails:hover
+{
+  color:rgb(72,72,72);
+  cursor: pointer;
+  text-decoration: none;
+}
+h1.aboutDetailsLink
+{
+  font-family: 'Open Sans', sans-serif;
+  color:rgb(72,72,72);
+  text-align: left;
+  margin-left: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-weight: 400;
+  font-size: 13px; 
+  display: block; 
+  overflow: hidden;
+}
+h1.aboutDetailsLink:hover
+{
+  color:rgb(72,72,72);
+  cursor: pointer;
+  text-decoration: underline;
+}
+i.about
+{
+  margin-right: 5px;
+}
 h4 /* address of the shop */
 {
+  display: inline-block;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   font-size: 13px;
@@ -109,7 +201,27 @@ h4 /* address of the shop */
   margin-top: 0px;
   font-weight: 400;
   margin-left: 10px;
-  display: inline-block;
+}
+h4.followers
+{
+  margin-top: 0px; 
+  margin-left: 200px;
+}
+h4.statusName
+{
+  display: block;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  font-style: lighter;
+  color:rgb(72,72,72);
+  text-align: left;
+  margin-top: 5px;
+  margin-left: 10px;
+  
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 } 
 h5 /* follow */
 {
@@ -120,7 +232,6 @@ h5 /* follow */
   color:rgb(72,72,72);
   text-align: left;
   margin-top: 0px;
-  font-weight: 400;
   margin-left: 2px;
   display: inline-block;
   float: right;
@@ -230,6 +341,282 @@ div.navbar
   background-color: rgb(245,245,245);
 }
 
+/* Contact Overlay */
+.ContactOverlay 
+{
+    /* Height & width depends on how you want to reveal the overlay (see JS below) */    
+    height: 0%;
+    width: 100%;
+    position: fixed; /* Stay in place */
+    z-index: 100; /* Sit on top */
+    left: 0;
+    top: 0;
+    background-color: rgb(0,0,0); /* Black fallback color */
+    background-color: rgba(0,0,0, 0.9); /* Black w/opacity */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+
+/* Position the content inside the overlay */
+.ContactOverlay-content {
+    position: relative;
+    top: 5%; /* 25% from the top */
+    width: 100%; /* 100% width */
+    text-align: center; /* Centered text/links */
+    margin-top: 10px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+}
+
+/* The navigation links inside the overlay */
+.ContactOverlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #818181;
+    display: block; /* Display block instead of inline */
+    transition: 0.3s; /* Transition effects on hover (color) */
+}
+
+/* When you mouse over the navigation links, change their color */
+.ContactOverlay a:hover, .ContactOverlay a:focus {
+    color: #f1f1f1;
+}
+
+/* Position the close button (top right corner) */
+.ContactOverlay .closebtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+}
+
+/*contact section */
+.ContactContainer {
+    max-width: 1000px;
+    margin: auto;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 10px;
+}
+
+/* Create two columns that float next to eachother */
+.ContactColumn {
+    float: left;
+    width: 50%;
+    margin-top: 6px;
+    padding: 20px;
+    text-align: left;
+}
+
+/* Clear floats after the columns */
+.ContactRow:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+*{
+    box-sizing: border-box;
+}
+
+.ContactColumn input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+.ContactColumn input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.ContactColumn input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .ContactColumn, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+}
+/* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
+/*@media screen and (max-height: 450px) {
+    .overlay a {font-size: 20px}
+    .overlay .closebtn {
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
+    }
+}*/
+/* Status Bar */
+
+div.statusbar 
+{
+  display: flex;
+  flex-wrap: nowrap;
+  max-width: 760px;
+  background-color: rgb(255,255,255);
+  overflow: auto;
+  white-space: nowrap;
+  
+  z-index: 100;
+  margin: auto;
+  margin-top: 40px;
+  border-radius: 10px;
+  border-color: rgb(220,220,220);
+  border-style: solid;
+  border-width: 1px;
+}
+div.statusbar > div
+{
+  width: 100px;
+
+}
+img.statusDp /* icons of the shops in posts */
+{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: inline;
+  margin-left:10px; 
+  margin-top:10px;
+}
+
+.StatusOverlay 
+{
+    /* Height & width depends on how you want to reveal the overlay (see JS below) */    
+    height: 0%;
+    width: 100%;
+    position: fixed; /* Stay in place */
+    z-index: 100; /* Sit on top */
+    left: 0;
+    top: 0;
+    background-color: rgb(0,0,0); /* Black fallback color */
+    background-color: rgba(0,0,0, 0.9); /* Black w/opacity */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+
+/* Position the content inside the overlay */
+.StatusOverlay-content {
+    position: relative;
+    top: 5%; /* 25% from the top */
+    width: 100%; /* 100% width */
+    text-align: center; /* Centered text/links */
+    margin-top: 10px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+}
+
+/* The navigation links inside the overlay */
+.StatusOverlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #818181;
+    display: block; /* Display block instead of inline */
+    transition: 0.3s; /* Transition effects on hover (color) */
+}
+
+/* When you mouse over the navigation links, change their color */
+.StatusOverlay a:hover, .StatusOverlay a:focus {
+    color: #f1f1f1;
+}
+
+/* Position the close button (top right corner) */
+.StatusOverlay .closebtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+}
+div.status
+{
+  max-width: 300px;
+  height:80vh;
+  background-color: rgb(255,255,255);
+  margin: auto;
+  border-color: rgb(220,220,220);
+  border-style: solid;
+  border-width: 1px;  
+  text-align: left;
+}
+.StatusPostOverlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .3s ease;
+}
+
+div.status:hover .StatusPostOverlay {
+  opacity: 1;
+}
+
+.StatusChangeIconRight {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 95%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 101;
+}
+.StatusChangeIconLeft {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 101;
+}
+.StatusProgressBar
+{
+  background-color:rgb(72,72,72);
+  color: rgb(72,72,72);
+  width:0%;display: block;height: 2px; 
+  margin-top: 5px;  
+  -webkit-transition: all 2s linear;  
+  -moz-transition: all 2s linear;  
+  -o-transition: all 2s linear;  
+  -ms-transition: all 2s linear;  
+  transition: all 2s linear;
+}
+img.statusPost
+{
+  width :100%;
+  display: block;
+  margin: auto;
+  margin-bottom: 10px;
+}
+h1.status /*shop name font in posts*/
+{
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  font-style: lighter;
+  color:rgb(72,72,72);
+  text-align: left;
+  margin-top: 0px;
+  margin-left: 10px;
+  display: inline-block;
+}
+
 /* links */
 a
 {
@@ -263,6 +650,14 @@ a.follow:hover
 {
   color: rgb(152,152,152);
 }
+a.followProfile
+{
+  float: right;
+  color: rgb(72,72,72);
+  font-size: 14px;
+  margin-top: 40px;
+  margin-right: 40px;
+}
 
 
 /* login */
@@ -278,7 +673,7 @@ div.login input[type=text],input[type="password"]
   margin-bottom: 6px;
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
-  font-size: 17px;
+  font-size: 15px;
   font-style: lighter;
   color:rgb(72,72,72);/*rgba(255,255,255,0.8)*/
   background-color: rgb(232,232,232);
@@ -286,10 +681,9 @@ div.login input[type=text],input[type="password"]
 
 div.login input[type=submit] 
 {
-  width: 65%;
+  width: 63%;
   padding: 6px;
   border-radius: 10px;
-  border-color: rgb(72,72,72);
   border-style: solid;
   margin-top: 15px;
   margin-bottom: 6px;
@@ -298,13 +692,14 @@ div.login input[type=submit]
   font-size: 17px;
   font-style: lighter;
   color:rgb(248,248,248);/*rgba(255,255,255,0.8)*/
-  background-color: rgb(72,72,72);
+  background-color: #4CAF50; /* rgb (96,96,96) */
+  border-color: #4CAF50;
 }
 
 div.login input[type=submit]:hover
 {
-  background-color: rgb(96,96,96);
-  border-color: rgb(96,96,96);
+  background-color: #45a049; /* rgb (96,96,96) */
+  border-color: #45a049;
 }
 
 
@@ -345,7 +740,7 @@ input[type="text"], input[type="password"], textarea, select
 }
 .Neon-input-dragDrop {
   display: block;
-  width: 343px;
+  max-width: 343px;
   margin: 0 auto 25px auto;
   padding: 25px;
   color: #8d9499;
@@ -396,6 +791,186 @@ input[type="text"], input[type="password"], textarea, select
   transition: all 0.2s;
 }
 
+/* profile overlay */
+
+div.cover {
+  top: 0;
+  left: 0;
+  position: relative;
+
+  max-width: 47.5em; /*760px*/
+  background-color: rgb(255,255,255);
+  padding : 0px 0px 10px 0px;
+  margin: auto;
+  margin-top: 50px;
+  border-radius: 10px;
+  border-color: rgb(220,220,220);
+  border-style: solid;
+  border-width: 1px;
+}
+.image1{
+  width: 100%;
+  position: relative;
+  height: auto; 
+}
+.image2 {
+  position: absolute;
+  max-width: 9.375em; /* 150, 150 */
+  max-height: 9.375em;
+  top: 20px;
+  left: 20px;
+  z-index: 1;
+  border : solid;
+  border-color: white;
+}
+
+.CoverContainer {
+  position: relative;
+  width: 100%;
+}
+
+.CoverImage {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.CoverOverlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .3s ease;
+}
+
+.CoverContainer:hover .CoverOverlay {
+  opacity: 1;
+}
+
+.CoverEditIcon {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 90%;
+  left: 95%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.dpContainer {
+  position: absolute;
+  max-width: 150px;
+  max-height: 150px;
+  top: 20px;
+  left: 20px;
+  z-index: 1;
+  border : solid;
+  border-color: white;
+}
+
+.dpImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.dpOverlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .3s ease;
+}
+
+.dpContainer:hover .dpOverlay {
+  opacity: 1;
+}
+
+.dpEditIcon {
+  color: white;
+  font-size: 15px;
+  position: absolute;
+  top: 90%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* Toggle button */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 35px;
+  height: 20px;
+  float: right;
+  margin-right: 10px;
+  margin-top: 40px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 15px;
+  width: 15px;
+  left: 4px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #00C000; /* #00C000 #2196F3 */
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(12px);
+  -ms-transform: translateX(12px);
+  transform: translateX(12px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
 /* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */
 @media screen and (max-width: 720px) 
 {
@@ -413,8 +988,116 @@ input[type="text"], input[type="password"], textarea, select
     {
       width: 100px;
     }
-    .Neon-input-dragDrop 
+
+    .image2 
     {
-      width: 300px; 
+      width: 100px;
+      height: 100px;
+      left:50%;
+      z-index: 1;
     }
+    .dpContainer {
+      width: 100px;
+      height: 100px;
+      top: 20px;
+      left: 20px;
+    }
+
+
+    h1.profile
+    {
+      margin-left: 140px;
+      font-size: 20px;
+    }
+    h4.followers
+    {
+      margin-left: 140px;
+    } 
+
+    a.followProfile
+    {
+      margin-top: 30px;
+      margin-right: 20px;
+    }
+
+    .switch 
+    {
+      margin-top: 30px;
+    }
+}
+
+@media screen and (max-width: 415px) 
+{
+
+    div.content
+    {
+      padding:0px;
+    }
+    h1
+    {
+      font-size: 15px;
+      margin-top: 20px;
+    }
+    h4
+    {
+      font-size: 12px;
+    }
+    h1.profile /* shope owner's profile text*/
+    {
+      margin-top: 10px;
+      margin-left: 100px;
+      font-size: 15px;
+    }
+    h4.followers /* shop owner's profile number of followers text */
+    {
+      margin-left: 100px;
+      font-size: 10px;
+    } 
+    h5
+    {
+      padding-right: 10px;
+    }
+
+    i.heart
+    {
+      margin-right: 10px;  
+    }
+    .dpContainer {
+      width: 70px;
+      height: 70px;
+      top: 10px;
+      left: 10px;
+    }
+    .navbar input[type=text] 
+    {
+      width: 50px;
+    }
+    ::-webkit-scrollbar 
+    { 
+      display: none; 
+    }
+
+    .navbar .search-container button 
+    {
+      margin-right: 5px;
+    }
+
+    .navbar a 
+    {
+      padding: 10px;
+    }
+
+    img.avatar /* icons of the shops in posts */
+    {
+      width: 50px;
+      height: 50px;
+      margin-left: 10px;
+      margin-top: 10px;
+    }
+    img.post
+    {
+      width :100%;
+      border-radius: 0px;
+    }
+
 }

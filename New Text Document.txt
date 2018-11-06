@@ -1,3 +1,14 @@
+xss:
+
+check input forms
+<script>alert("xss")</script>
+
+to redirect to cookie stealers
+silent cookie stealing
+
+
+
+
 todo:
 
 change hardcoded html files, use template.html and forms 

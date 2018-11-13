@@ -34,7 +34,7 @@ class ShopSignUpForm(forms.ModelForm):
 
     class Meta:
         model = Shop
-        fields = ['ShopOwner', 'ShopName', 'Address', 'NumOfAds', 'ProfilePic']
+        fields = ['ShopOwner', 'ShopName', 'Address', 'NumOfAds', 'NumOfQuickAds', 'ProfilePic']
 
 
 

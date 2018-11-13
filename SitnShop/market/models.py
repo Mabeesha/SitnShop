@@ -22,13 +22,15 @@ def save_user_profile(sender, instance, **kwargs):
 class HashTag(models.Model):
       
     tag_name = models.CharField(max_length=64, unique=True)
-    def __unicode__(self):
-        return self.name
+    def __str__(self):
+        return str(self.tag_name)
 
 
 class ShopCategory(models.Model):
     category_name = models.CharField(max_length=64, unique=True) 
     allowed_hash_tags = models.ManyToManyField(HashTag)
+    def __str__(self):
+        return str(self.category_name)
 
 class Shop(models.Model):
     # user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
@@ -37,9 +39,10 @@ class Shop(models.Model):
     ShopName = models.CharField(max_length=255)
     Address = models.CharField(max_length=255)
     NumOfAds = models.IntegerField()
+    NumOfQuickAds = models.IntegerField()
     ProfilePic = models.FileField()
 
-    timestamp = models.DateTimeField()
+    CreatedAt = models.DateField(auto_now_add=True)
     shop_category = models.ForeignKey(ShopCategory, on_delete=models.CASCADE)
     hash_tags = models.ManyToManyField(HashTag, blank=True)
 
@@ -53,8 +56,19 @@ class Advertisement(models.Model):
     Advertisement_text = models.CharField(max_length=255)
     Advertisement_data = models.FileField()
     hash_tags = models.ManyToManyField(HashTag, blank=True)
+    CreatedAt = models.DateField(auto_now_add=True)
     def __str__(self):
         return self.Advertisement_text
+
+
+class QuickAdd(models.Model):
+    shop = models.ForeignKey(Shop, on_delete=models.CASCADE)
+    QuickAdd_text = models.CharField(max_length=255)
+    QuickAdd_data = models.FileField()
+    hash_tags = models.ManyToManyField(HashTag, blank=True)
+    CreatedAt = models.DateField(auto_now_add=True, db_index=True)
+    def __str__(self):
+        return "QuickAdd: "+self.QuickAdd_text
 
 
 class Customer(models.Model):

@@ -1,0 +1,19 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "to test Zuck.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "zuck",
+    "django",
+    "backend"
+  ],
+  "author": "hiruna72",
+  "license": "ISC",
+  "dependencies": {
+    "zuck.js": "^1.2.0"
+  }
+}

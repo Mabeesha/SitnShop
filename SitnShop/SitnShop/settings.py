@@ -40,8 +40,7 @@ INSTALLED_APPS = [
     'el_pagination',
     'market.apps.MarketConfig',
     'rest_framework',
-
-
+    'django_cron'
 ]
 
 # Custom Django auth settings
@@ -59,6 +58,11 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CRON_CLASSES = [
+    'market.cron.MyCronJob',
+]
+
 
 ROOT_URLCONF = 'SitnShop.urls'
 

@@ -1,13 +1,19 @@
 {% extends 'market/base.html' %}
+{% block head %}
+
+		<!-- core stylesheet -->
+		<link rel="stylesheet" href="/static/zuck.css">
+		<!-- skins -->
+		<link rel="stylesheet" href="/static/snapssenger.css">
+
+
+{% endblock %}
+
 {% block body %}
-
-
-		<!--{% load el_pagination_tags %}-->
-		<!--{% with entry_list as e %}-->
-			<!--{% lazy_paginate e %}-->
-
-
-  		{% for add in adds %}
+		<div class="content" style="margin-top: 100px;">
+        	<div id="stories"></div>
+        </div>
+  		{% for add in adds.adds %}
   		<div class="content" style="margin-top: 80px;">
 
   			<img class="avatar" src="{{ add.shop.ProfilePic.url }}" alt="dp">
@@ -21,10 +27,12 @@
   		</div>
 
 		{% endfor %}
-		<!--{% show_more %}-->
 
-		<!--{%endwith %}-->
 
 {% endblock %}
-	<!--</body>-->
-<!--</html>-->
+
+{% block javascript %}
+	<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+ 	<script src="/static/js/zuck.js"></script>
+    <script src="/static/js/home.js"></script>
+{% endblock %}

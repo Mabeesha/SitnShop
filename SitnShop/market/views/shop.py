@@ -11,6 +11,10 @@ from ..models import Shop, Advertisement, Follow
 from ..forms import UserForm, AdvertisementForm, UpdateAdvertisementForm
 import datetime
 
+import json
+from django.core.serializers.json import DjangoJSONEncoder
+from django.http import JsonResponse
+
 IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg']
 
 class ShopIndexView(generic.ListView):
@@ -32,11 +36,152 @@ class ShopIndexView(generic.ListView):
         return data
 
 
+def getQuickAdds(request):
+    stories = [
+        {
+            "id": "ramon",
+            'photo': "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/users/1.jpg",
+            'name': "Ramon",
+            'link': "https://ramon.codes",
+            'lastUpdated': 52,
+            'items': [{
+                'id': 'ramon-1',
+                'type': 'photo',
+                'length': '3',
+                'src': 'https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/1.jpg',
+                'preview': 'https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/1.jpg',
+                'link': '',
+                'linkText': 'false',
+                'seen': 'false',
+                'time': '52'
+            }]},
+        {
+            'id': "gorillaz",
+            'photo': "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/users/2.jpg",
+            'name': "Gorillaz",
+            'link': "",
+            'lastUpdated': 52,
+            'items': [{
+                'id': 'gorillaz-1',
+                'type': 'video',
+                'length': '0',
+                'src': 'https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/4.mp4',
+                'preview': 'https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/4.jpg',
+                'link': '',
+                'linkText': 'false',
+                'seen': 'false',
+                'time': '52'
+
+            },
+                {
+                    'id': 'gorillaz-2',
+                    'type': 'photo',
+                    'length': '3',
+                    'src': 'https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/5.jpg',
+                    'preview': 'https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/5.jpg',
+                    'link': '',
+                    'linkText': 'false',
+                    'seen': 'false',
+                    'time': '52'
+                }
+            ]
+        },
+        {
+            'id': "ladygaga",
+            'photo': "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/users/3.jpg",
+            'name': "Lady Gaga",
+            'link': "",
+            'lastUpdated': 52,
+            'items': [{
+                'id': 'ladygaga-1',
+                'type': 'photo',
+                'length': '5',
+                'src': 'https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/6.jpg',
+                'preview': 'https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/6.jpg',
+                'link': '',
+                'linkText': 'false',
+                'seen': 'false',
+                'time': '52'
+            },
+                {
+                    'id': 'ladygaga-2',
+                    'type': 'photo',
+                    'length': '3',
+                    'src': 'https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/7.jpg',
+                    'preview': 'https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/7.jpg',
+                    'link': 'http://ladygaga.com',
+                    'linkText': 'false',
+                    'seen': 'false',
+                    'time': '52'
+                }
+            ]
+        },
+        {
+            'id': "starboy",
+            'photo': "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/users/4.jpg",
+            'name': "The Weeknd",
+            'link': "",
+            'lastUpdated': 52,
+            'items': [
+                {
+                    'id': 'starboy-1',
+                    'type': 'photo',
+                    'length': '5',
+                    'src': 'https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/8.jpg',
+                    'preview': 'https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/8.jpg',
+                    'link': '',
+                    'linkText': 'false',
+                    'seen': 'false',
+                    'time': '52'
+                }
+            ]
+        },
+
+        {
+            'id': "riversquomo",
+            'photo': "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/users/5.jpg",
+            'name': "Rivers Cuomo",
+            'link': "",
+            'lastUpdated': 27,
+            'items': [
+                {
+                    'id': 'riverscuomo',
+                    'type': 'photo',
+                    'length': '10',
+                    'src': 'https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/9.jpg',
+                    'preview': 'https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/9.jpg',
+                    'link': '',
+                    'linkText': 'false',
+                    'seen': 'false',
+                    'time': '52'
+                }
+            ]
+        }
+    ]
+    # items = [{
+    #     'id': 'ramon-1',
+    #     'type': 'photo',
+    #     'length': '3',
+    #     'src': 'https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/1.jpg',
+    #     'preview': 'https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/1.jpg',
+    #     'link': '',
+    #     'linkText': 'false',
+    #     'seen': 'false',
+    #     'time': 2
+    # }]
+    return JsonResponse({
+        'quick_adds': stories})
+
 class IndexView(generic.ListView):
     template_name = 'market/home.html'
     context_object_name = 'adds'
+
     def get_queryset(self):
-        return Advertisement.objects.all()
+
+        data = {'adds': Advertisement.objects.all()}
+        data = json.dumps(list(data), cls=DjangoJSONEncoder)
+        # print(data)
+        return data
 
 class DetailView(generic.DetailView):
     model = Shop

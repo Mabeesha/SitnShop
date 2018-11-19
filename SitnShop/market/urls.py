@@ -31,10 +31,8 @@ urlpatterns = [
         # path('login/loginShop/', shop.ShopLoginView.as_view(), name="loginShop"),
 
 
-        # todo: create a federated login for shopvisitor
-        path('login/signupCustomer/', customer.CustomerSignUpView.as_view(), name="signupCustomer"),
-        path('login/loginCustomer/', customer.loginCustomer, name="loginCustomer"),
-
+        # adding social login redirect
+        path('validate', customer.validate_customer, name="validate_customer"),
 
         path('edit_shop/', shop.edit_shop, name='edit_shop'),
         path('edit_customer/', customer.edit_customer, name='edit_customer'),

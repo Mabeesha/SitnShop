@@ -8,7 +8,7 @@ from django.views.generic import TemplateView, CreateView, ListView, UpdateView,
 from ..forms import ShopSignUpForm, ShopLogInForm
 from ..models import Shop, Advertisement, Follow
 
-from ..forms import UserForm, AdvertisementForm, UpdateAdvertisementForm
+from ..forms import UserForm, CreateAdvertisementForm, UpdateAdvertisementForm
 import datetime
 
 import json
@@ -252,6 +252,10 @@ def signupShop(request):
                 shop.timestamp = datetime.datetime.now()
                 # shop = Shop.objects.get(user=request.user)
                 shop.save()
+                # hash_tags = form.cleaned_data.get('hash_tags')
+                # print(hash_tags)
+                # shop.hash_tags.set(hash_tags)
+                # shop.save()
                 edit_shop(request)
                 # return render(request, 'market/edit_shop_profile.html', {'shop': shop})
             else:
@@ -310,7 +314,7 @@ def edit_shop(request):
     adds = Advertisement.objects.filter(shop=shop)
 
     updateForm = UpdateAdvertisementForm(request.POST or None, request.FILES or None)
-    createform = AdvertisementForm(request.POST or None, request.FILES or None)
+    createform = CreateAdvertisementForm(request.POST or None, request.FILES or None)
     # shop = get_object_or_404(Shop, pk=shop_id)
     shop = Shop.objects.get(user=request.user)
     numberOfAdds = Advertisement.objects.filter(shop=shop).count()
@@ -343,7 +347,7 @@ class AdvertisementUpdate(UpdateView):
 class AdvertisementCreate(CreateView):
     model = Advertisement
     # fields = ['Advertisement_text']
-    form_class = AdvertisementForm
+    form_class = CreateAdvertisementForm
 
     def get_success_url(self):
         return 'market:edit_shop'

@@ -1,4 +1,4 @@
-from .models import Customer, Shop, Advertisement
+from .models import Customer, Shop, Advertisement, HashTag, ShopCategory
 from django import forms
 from django.db import transaction
 from django.contrib.auth.models import User
@@ -17,7 +17,7 @@ class ShopLogInForm(forms.ModelForm):
         model = User
         fields = ['username', 'password']
 
-class AdvertisementForm(forms.ModelForm):
+class CreateAdvertisementForm(forms.ModelForm):
 
     class Meta:
         model = Advertisement
@@ -34,8 +34,27 @@ class ShopSignUpForm(forms.ModelForm):
 
     class Meta:
         model = Shop
-        fields = ['ShopOwner', 'ShopName', 'Address', 'NumOfAds', 'NumOfQuickAds', 'ProfilePic']
+        fields = ['ShopOwner', 'ShopName', 'shop_category', 'Address', 'NumOfAds', 'NumOfQuickAds', 'ProfilePic']
 
+
+
+#
+# class ShopSignUpForm(forms.ModelForm):
+#     # hst = forms.ModelMultipleChoiceField(queryset=HashTag.get(shop))
+#     hash_tags = forms.ModelMultipleChoiceField(
+#         widget=forms.CheckboxSelectMultiple,
+#         queryset=ShopCategory.objects.get(category_name='Salon').allowed_hash_tags.all()
+#     )
+#
+#     class Meta:
+#         model = Shop
+#         fields = ['ShopOwner', 'ShopName', 'shop_category', 'hash_tags', 'Address', 'NumOfAds', 'NumOfQuickAds', 'ProfilePic']
+#
+#     # def __init__(self, *args, **kwargs):
+#     #     shop_category = kwargs.pop('shop_category')
+#     #     super(ShopSignUpForm, self).__init__(*args, **kwargs)
+#     #     choices = forms.getChoices(shop_category)
+#     #     self.fields['hash_tags'].queryset = choices
 
 
 class CustomerSignUp(forms.ModelForm):

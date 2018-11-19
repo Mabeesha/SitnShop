@@ -10,6 +10,7 @@
 {% endblock %}
 
 {% block body %}
+		{% csrf_token %}
 		<div class="content" style="margin-top: 100px;">
         	<div id="stories"></div>
         </div>

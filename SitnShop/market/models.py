@@ -26,11 +26,19 @@ class HashTag(models.Model):
         return str(self.tag_name)
 
 
+
 class ShopCategory(models.Model):
-    category_name = models.CharField(max_length=64, unique=True) 
+    category_name = models.CharField(max_length=64, unique=True)
     allowed_hash_tags = models.ManyToManyField(HashTag)
     def __str__(self):
         return str(self.category_name)
+
+# class AllowedHashTags(models.Model):
+#     shop_category = models.ForeignKey(ShopCategory, on_delete=models.CASCADE)
+#     hash_tags = models.ManyToManyField(HashTag)
+#     def __str__(self):
+#         return str(self.hash_tags)
+
 
 class Shop(models.Model):
     # user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
@@ -44,8 +52,8 @@ class Shop(models.Model):
 
     CreatedAt = models.DateField(auto_now_add=True)
     shop_category = models.ForeignKey(ShopCategory, on_delete=models.CASCADE)
-    hash_tags = models.ManyToManyField(HashTag, blank=True)
-
+    # hash_tags = models.ManyToManyField(AllowedHashTags, blank=True)
+    hash_tags = models.ManyToManyField(HashTag)
     def __str__(self):
         return str(self.ShopName)
 

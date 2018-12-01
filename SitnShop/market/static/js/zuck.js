@@ -520,7 +520,9 @@
                     '" ' +
                     get(item, "type") +
                     ">") +
-                (get(item, "link")
+                (get(item, "linkText") ? '<p' + linkText + "</p>" : "" )+
+
+                    (get(item, "link")
                   ? '<a class="tip link" href="' +
                     get(item, "link") +
                     '" rel="noopener" target="_blank">' +
@@ -529,6 +531,8 @@
                       : linkText) +
                     "</a>"
                   : "") +
+
+
                 "</div>";
             });
             slides.innerHTML = htmlItems;

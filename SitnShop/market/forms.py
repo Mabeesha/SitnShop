@@ -1,4 +1,4 @@
-from .models import Customer, Shop, Advertisement, HashTag, ShopCategory
+from .models import Customer, Shop, Advertisement, HashTag, ShopCategory, QuickAdd
 from django import forms
 from django.db import transaction
 from django.contrib.auth.models import User
@@ -23,11 +23,27 @@ class CreateAdvertisementForm(forms.ModelForm):
         model = Advertisement
         fields = ['Advertisement_text', 'Advertisement_data']
 
+
+class CreateQuickAdvertisementForm(forms.ModelForm):
+
+    class Meta:
+        model = QuickAdd
+        fields = ['QuickAdd_text', 'QuickAdd_data']
+
+
+
 class UpdateAdvertisementForm(forms.ModelForm):
 
     class Meta:
         model = Advertisement
         fields = ['Advertisement_text']
+
+class UpdateQuickAdvertisementForm(forms.ModelForm):
+
+    class Meta:
+        model = Advertisement
+        fields = ['Advertisement_text']
+
 
 
 class ShopSignUpForm(forms.ModelForm):
@@ -38,8 +54,8 @@ class ShopSignUpForm(forms.ModelForm):
 
 
 
-#
-# class ShopSignUpForm(forms.ModelForm):
+
+# class HashTagSet(forms.ModelForm):
 #     # hst = forms.ModelMultipleChoiceField(queryset=HashTag.get(shop))
 #     hash_tags = forms.ModelMultipleChoiceField(
 #         widget=forms.CheckboxSelectMultiple,
@@ -48,7 +64,7 @@ class ShopSignUpForm(forms.ModelForm):
 #
 #     class Meta:
 #         model = Shop
-#         fields = ['ShopOwner', 'ShopName', 'shop_category', 'hash_tags', 'Address', 'NumOfAds', 'NumOfQuickAds', 'ProfilePic']
+#         fields = ['hash_tags']
 #
 #     # def __init__(self, *args, **kwargs):
 #     #     shop_category = kwargs.pop('shop_category')
@@ -72,3 +88,4 @@ class CustomerSignUp(forms.ModelForm):
         user.save()
         customer = Customer.objects.create(user=user)
         return user
+

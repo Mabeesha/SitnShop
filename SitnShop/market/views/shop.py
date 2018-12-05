@@ -11,9 +11,14 @@ from ..models import Shop, Advertisement, Follow, QuickAdd, ShopCategory, HashTa
 from ..forms import UserForm, CreateAdvertisementForm, UpdateAdvertisementForm, CreateQuickAdvertisementForm, UpdateQuickAdvertisementForm
 import datetime
 
+
+
 import json
 from django.core.serializers.json import DjangoJSONEncoder
 from django.http import JsonResponse
+
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 IMAGE_FILE_TYPES = ['png', 'jpg', 'jpeg']
 
@@ -195,14 +200,17 @@ def getQuickAdds(request):
     return JsonResponse({
         'quick_adds': stories})
 
+
 class IndexView(generic.ListView):
     template_name = 'market/home.html'
+    paginate_by = 2
     context_object_name = 'adds'
-    def get_queryset(self):
-
-        data = {'adds': Advertisement.objects.all()}
-        print(Advertisement.objects.all())
-        return data
+    model = Advertisement
+    # def get_queryset(self):
+    #
+    #     data = {'adds': Advertisement.objects.all()}
+    #     print(Advertisement.objects.all())
+    #     return data
 
 class DetailView(generic.DetailView):
     model = Shop
